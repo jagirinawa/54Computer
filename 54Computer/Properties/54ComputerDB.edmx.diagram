@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="df44d1785f9a4a5b988777237c52878e" Name="Diagram1">
+        <EntityTypeShape EntityType="ComputerModel.Android" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.Bilgisayar" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.Calisan" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.iO" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.Laptop" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.PC" Width="1.5" PointX="0.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.sysdiagram" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.Telephone" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.Urun" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="ComputerModel.FK_Telephone_Android" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_Bilgisayar_Laptop" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_Bilgisayar_PC" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_Urun_Bilgisayar" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_Telephone_iOS" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_Urun_Telephone" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

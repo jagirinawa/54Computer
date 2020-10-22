@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ComputerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Android">
+    <Key>
+      <PropertyRef Name="AndroidID" />
+    </Key>
+    <Property Name="AndroidID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Islemci" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RAM" Type="int" Nullable="false" />
+    <Property Name="Depolama" Type="int" Nullable="false" />
+    <Property Name="Android_Surumu" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bilgisayar">
+    <Key>
+      <PropertyRef Name="BilgisayarID" />
+    </Key>
+    <Property Name="BilgisayarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Calisan">
+    <Key>
+      <PropertyRef Name="CalisanID" />
+    </Key>
+    <Property Name="CalisanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="Sifre" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Maas" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="iOS">
+    <Key>
+      <PropertyRef Name="iOS_ID" />
+    </Key>
+    <Property Name="iOS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Islemci" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RAM" Type="int" Nullable="false" />
+    <Property Name="Depolama" Type="int" Nullable="false" />
+    <Property Name="iOS_Surumu" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Laptop">
+    <Key>
+      <PropertyRef Name="LaptopID" />
+    </Key>
+    <Property Name="LaptopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Islemci" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RAM" Type="int" Nullable="false" />
+    <Property Name="Depolama" Type="int" Nullable="false" />
+    <Property Name="Ekran_Boyutu" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PC">
+    <Key>
+      <PropertyRef Name="PC_ID" />
+    </Key>
+    <Property Name="PC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Islemci" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RAM" Type="int" Nullable="false" />
+    <Property Name="Depolama" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Telephone">
+    <Key>
+      <PropertyRef Name="TelephoneID" />
+    </Key>
+    <Property Name="TelephoneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Urun">
+    <Key>
+      <PropertyRef Name="UrunID" />
+    </Key>
+    <Property Name="UrunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Urun_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Fiyat" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Adet" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Kategori" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Bilgisayar_Laptop">
+    <End Role="Laptop" Type="Self.Laptop" Multiplicity="1" />
+    <End Role="Bilgisayar" Type="Self.Bilgisayar" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Laptop">
+        <PropertyRef Name="LaptopID" />
+      </Principal>
+      <Dependent Role="Bilgisayar">
+        <PropertyRef Name="BilgisayarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bilgisayar_PC">
+    <End Role="PC" Type="Self.PC" Multiplicity="1" />
+    <End Role="Bilgisayar" Type="Self.Bilgisayar" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PC">
+        <PropertyRef Name="PC_ID" />
+      </Principal>
+      <Dependent Role="Bilgisayar">
+        <PropertyRef Name="BilgisayarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Telephone_Android">
+    <End Role="Android" Type="Self.Android" Multiplicity="1" />
+    <End Role="Telephone" Type="Self.Telephone" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Android">
+        <PropertyRef Name="AndroidID" />
+      </Principal>
+      <Dependent Role="Telephone">
+        <PropertyRef Name="TelephoneID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Telephone_iOS">
+    <End Role="iOS" Type="Self.iOS" Multiplicity="1" />
+    <End Role="Telephone" Type="Self.Telephone" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="iOS">
+        <PropertyRef Name="iOS_ID" />
+      </Principal>
+      <Dependent Role="Telephone">
+        <PropertyRef Name="TelephoneID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_Bilgisayar">
+    <End Role="Bilgisayar" Type="Self.Bilgisayar" Multiplicity="1" />
+    <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Bilgisayar">
+        <PropertyRef Name="BilgisayarID" />
+      </Principal>
+      <Dependent Role="Urun">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_Telephone">
+    <End Role="Telephone" Type="Self.Telephone" Multiplicity="1" />
+    <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Telephone">
+        <PropertyRef Name="TelephoneID" />
+      </Principal>
+      <Dependent Role="Urun">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ComputerModelStoreContainer">
+    <EntitySet Name="Android" EntityType="Self.Android" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bilgisayar" EntityType="Self.Bilgisayar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Calisan" EntityType="Self.Calisan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="iOS" EntityType="Self.iOS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Laptop" EntityType="Self.Laptop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PC" EntityType="Self.PC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Telephone" EntityType="Self.Telephone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Urun" EntityType="Self.Urun" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Bilgisayar_Laptop" Association="Self.FK_Bilgisayar_Laptop">
+      <End Role="Laptop" EntitySet="Laptop" />
+      <End Role="Bilgisayar" EntitySet="Bilgisayar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bilgisayar_PC" Association="Self.FK_Bilgisayar_PC">
+      <End Role="PC" EntitySet="PC" />
+      <End Role="Bilgisayar" EntitySet="Bilgisayar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Telephone_Android" Association="Self.FK_Telephone_Android">
+      <End Role="Android" EntitySet="Android" />
+      <End Role="Telephone" EntitySet="Telephone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Telephone_iOS" Association="Self.FK_Telephone_iOS">
+      <End Role="iOS" EntitySet="iOS" />
+      <End Role="Telephone" EntitySet="Telephone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_Bilgisayar" Association="Self.FK_Urun_Bilgisayar">
+      <End Role="Bilgisayar" EntitySet="Bilgisayar" />
+      <End Role="Urun" EntitySet="Urun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_Telephone" Association="Self.FK_Urun_Telephone">
+      <End Role="Telephone" EntitySet="Telephone" />
+      <End Role="Urun" EntitySet="Urun" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

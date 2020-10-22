@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ComputerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Android">
+    <Key>
+      <PropertyRef Name="AndroidID" />
+    </Key>
+    <Property Name="AndroidID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Islemci" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RAM" Type="Int32" Nullable="false" />
+    <Property Name="Depolama" Type="Int32" Nullable="false" />
+    <Property Name="Android_Surumu" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Telephone" Relationship="Self.FK_Telephone_Android" FromRole="Android" ToRole="Telephone" />
+  </EntityType>
+  <EntityType Name="Bilgisayar">
+    <Key>
+      <PropertyRef Name="BilgisayarID" />
+    </Key>
+    <Property Name="BilgisayarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Laptop" Relationship="Self.FK_Bilgisayar_Laptop" FromRole="Bilgisayar" ToRole="Laptop" />
+    <NavigationProperty Name="PC" Relationship="Self.FK_Bilgisayar_PC" FromRole="Bilgisayar" ToRole="PC" />
+    <NavigationProperty Name="Urun" Relationship="Self.FK_Urun_Bilgisayar" FromRole="Bilgisayar" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="Calisan">
+    <Key>
+      <PropertyRef Name="CalisanID" />
+    </Key>
+    <Property Name="CalisanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Sifre" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Telefon" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Maas" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="iO">
+    <Key>
+      <PropertyRef Name="iOS_ID" />
+    </Key>
+    <Property Name="iOS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Islemci" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RAM" Type="Int32" Nullable="false" />
+    <Property Name="Depolama" Type="Int32" Nullable="false" />
+    <Property Name="iOS_Surumu" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Telephone" Relationship="Self.FK_Telephone_iOS" FromRole="iOS" ToRole="Telephone" />
+  </EntityType>
+  <EntityType Name="Laptop">
+    <Key>
+      <PropertyRef Name="LaptopID" />
+    </Key>
+    <Property Name="LaptopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Islemci" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RAM" Type="Int32" Nullable="false" />
+    <Property Name="Depolama" Type="Int32" Nullable="false" />
+    <Property Name="Ekran_Boyutu" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Bilgisayar" Relationship="Self.FK_Bilgisayar_Laptop" FromRole="Laptop" ToRole="Bilgisayar" />
+  </EntityType>
+  <EntityType Name="PC">
+    <Key>
+      <PropertyRef Name="PC_ID" />
+    </Key>
+    <Property Name="PC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Islemci" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RAM" Type="Int32" Nullable="false" />
+    <Property Name="Depolama" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bilgisayar" Relationship="Self.FK_Bilgisayar_PC" FromRole="PC" ToRole="Bilgisayar" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Telephone">
+    <Key>
+      <PropertyRef Name="TelephoneID" />
+    </Key>
+    <Property Name="TelephoneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Android" Relationship="Self.FK_Telephone_Android" FromRole="Telephone" ToRole="Android" />
+    <NavigationProperty Name="iO" Relationship="Self.FK_Telephone_iOS" FromRole="Telephone" ToRole="iOS" />
+    <NavigationProperty Name="Urun" Relationship="Self.FK_Urun_Telephone" FromRole="Telephone" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="Urun">
+    <Key>
+      <PropertyRef Name="UrunID" />
+    </Key>
+    <Property Name="UrunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Urun_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fiyat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Adet" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Kategori" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Bilgisayar" Relationship="Self.FK_Urun_Bilgisayar" FromRole="Urun" ToRole="Bilgisayar" />
+    <NavigationProperty Name="Telephone" Relationship="Self.FK_Urun_Telephone" FromRole="Urun" ToRole="Telephone" />
+  </EntityType>
+  <Association Name="FK_Telephone_Android">
+    <End Role="Android" Type="Self.Android" Multiplicity="1" />
+    <End Role="Telephone" Type="Self.Telephone" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Android">
+        <PropertyRef Name="AndroidID" />
+      </Principal>
+      <Dependent Role="Telephone">
+        <PropertyRef Name="TelephoneID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bilgisayar_Laptop">
+    <End Role="Laptop" Type="Self.Laptop" Multiplicity="1" />
+    <End Role="Bilgisayar" Type="Self.Bilgisayar" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Laptop">
+        <PropertyRef Name="LaptopID" />
+      </Principal>
+      <Dependent Role="Bilgisayar">
+        <PropertyRef Name="BilgisayarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bilgisayar_PC">
+    <End Role="PC" Type="Self.PC" Multiplicity="1" />
+    <End Role="Bilgisayar" Type="Self.Bilgisayar" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PC">
+        <PropertyRef Name="PC_ID" />
+      </Principal>
+      <Dependent Role="Bilgisayar">
+        <PropertyRef Name="BilgisayarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_Bilgisayar">
+    <End Role="Bilgisayar" Type="Self.Bilgisayar" Multiplicity="1" />
+    <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Bilgisayar">
+        <PropertyRef Name="BilgisayarID" />
+      </Principal>
+      <Dependent Role="Urun">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Telephone_iOS">
+    <End Role="iOS" Type="Self.iO" Multiplicity="1" />
+    <End Role="Telephone" Type="Self.Telephone" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="iOS">
+        <PropertyRef Name="iOS_ID" />
+      </Principal>
+      <Dependent Role="Telephone">
+        <PropertyRef Name="TelephoneID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_Telephone">
+    <End Role="Telephone" Type="Self.Telephone" Multiplicity="1" />
+    <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Telephone">
+        <PropertyRef Name="TelephoneID" />
+      </Principal>
+      <Dependent Role="Urun">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Androids" EntityType="Self.Android" />
+    <EntitySet Name="Bilgisayars" EntityType="Self.Bilgisayar" />
+    <EntitySet Name="Calisans" EntityType="Self.Calisan" />
+    <EntitySet Name="iOS" EntityType="Self.iO" />
+    <EntitySet Name="Laptops" EntityType="Self.Laptop" />
+    <EntitySet Name="PCs" EntityType="Self.PC" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Telephones" EntityType="Self.Telephone" />
+    <EntitySet Name="Uruns" EntityType="Self.Urun" />
+    <AssociationSet Name="FK_Telephone_Android" Association="Self.FK_Telephone_Android">
+      <End Role="Android" EntitySet="Androids" />
+      <End Role="Telephone" EntitySet="Telephones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bilgisayar_Laptop" Association="Self.FK_Bilgisayar_Laptop">
+      <End Role="Laptop" EntitySet="Laptops" />
+      <End Role="Bilgisayar" EntitySet="Bilgisayars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bilgisayar_PC" Association="Self.FK_Bilgisayar_PC">
+      <End Role="PC" EntitySet="PCs" />
+      <End Role="Bilgisayar" EntitySet="Bilgisayars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_Bilgisayar" Association="Self.FK_Urun_Bilgisayar">
+      <End Role="Bilgisayar" EntitySet="Bilgisayars" />
+      <End Role="Urun" EntitySet="Uruns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Telephone_iOS" Association="Self.FK_Telephone_iOS">
+      <End Role="iOS" EntitySet="iOS" />
+      <End Role="Telephone" EntitySet="Telephones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_Telephone" Association="Self.FK_Urun_Telephone">
+      <End Role="Telephone" EntitySet="Telephones" />
+      <End Role="Urun" EntitySet="Uruns" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ComputerModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ComputerModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
